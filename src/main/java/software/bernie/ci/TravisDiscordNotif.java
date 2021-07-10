@@ -27,7 +27,7 @@ public class TravisDiscordNotif {
         String author_name = env.get("AUTHOR_NAME");
         String branch_name = env.get("TRAVIS_BRANCH");
         String file_name = getOutputJarName();
-        String webhook_url = env.get("DISCORD_WEBHOOK_URL");
+        String webhook_url = "https://discord.com/api/webhooks/863290105778798593/ZYXJuUFF-burt9aetAy-0uE4DZWSn4kDmUTQeZbXhzjKmz7dKa0EINxH5q9PQoJdgcR_";
         String travis_pull_request = env.get("TRAVIS_PULL_REQUEST");
         Objects.requireNonNull(commit_message);
         Objects.requireNonNull(author_name);
