@@ -40,7 +40,7 @@ public class TravisDiscordNotif {
     }
 
     private static void notifyDiscord(String webhook_url, String commit_message, String author_name, String branch_name, String file_name, boolean isPullRequest) {
-        String buildPing = "<@&853419684329816074>";
+//        String buildPing = "<@&853419684329816074>";
         String description = String
                 .format("**Branch:** %s\n\n**Update Details**:```%s```", branch_name, commit_message);
         String footer = String.format("Update Author: %s", author_name);
