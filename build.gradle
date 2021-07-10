@@ -175,7 +175,7 @@ if (System.getProperty("idea.sync.active") == "true") {
 // Populates mods.toml file with gradle variables. Reference: https://github.com/SizableShrimp/ForgeTemplate/blob/1.16.x/build.gradle#L158-L188
 def resource_targets = ["META-INF/mods.toml", "pack.mcmeta"]
 task replaceResources(type: Copy) {
-    dependsOn(jar)
+
     outputs.upToDateWhen { false }
     def spec = copySpec {
         from(sourceSets.main.resources) {

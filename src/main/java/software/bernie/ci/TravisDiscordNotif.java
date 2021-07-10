@@ -44,10 +44,11 @@ public class TravisDiscordNotif {
         String description = String
                 .format("**Branch:** %s\n\n**Update Details**:```%s```", branch_name, commit_message);
         String footer = String.format("Update Author: %s", author_name);
-        if (!isPullRequest && (branch_name.equals("master") || branch_name.equals("feature/CI"))) {
+        if (!isPullRequest && (branch_name.equals("master") || branch_name.equals("fix/buildscript-shadow"))) {
             WebhookClient.withUrl(webhook_url).send(
                     new WebhookMessageBuilder()
-                            .setContent(buildPing)
+//                            .setContent(buildPing)
+                            .setContent("Buildscript test")
                             .addEmbeds(
                                     new WebhookEmbedBuilder()
                                             .setColor(9193502)
