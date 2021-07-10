@@ -26,9 +26,9 @@ public class TravisDiscordNotif {
         String commit_message = env.get("COMMIT_MESSAGE");
         String author_name = env.get("AUTHOR_NAME");
         String branch_name = env.get("TRAVIS_BRANCH");
-        String file_name = getOutputJarName();
+        String file_name = "Techarium-1.16.5-1.0";
         String webhook_url = "https://discord.com/api/webhooks/863290105778798593/ZYXJuUFF-burt9aetAy-0uE4DZWSn4kDmUTQeZbXhzjKmz7dKa0EINxH5q9PQoJdgcR_";
-        String travis_pull_request = env.get("TRAVIS_PULL_REQUEST");
+        String travis_pull_request = "testerino";
         Objects.requireNonNull(commit_message);
         Objects.requireNonNull(author_name);
         Objects.requireNonNull(branch_name);
@@ -44,7 +44,7 @@ public class TravisDiscordNotif {
         String description = String
                 .format("**Branch:** %s\n\n**Update Details**:```%s```", branch_name, commit_message);
         String footer = String.format("Update Author: %s", author_name);
-        if (!isPullRequest && (branch_name.equals("master") || branch_name.equals("fix/buildscript-shadow"))) {
+//        if (!isPullRequest && (branch_name.equals("master") || branch_name.equals("fix/buildscript-shadow"))) {
             WebhookClient.withUrl(webhook_url).send(
                     new WebhookMessageBuilder()
 //                            .setContent(buildPing)
@@ -57,7 +57,7 @@ public class TravisDiscordNotif {
                                             .build())
                             .build())
                     .thenApply((future) -> uploadJar(webhook_url, file_name));
-        }
+//        }
     }
 
     private static CompletableFuture<Void> uploadJar(String webhook_url, String file_name) {
