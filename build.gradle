@@ -8,7 +8,7 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
-        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.4'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:6.1.0'
         classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
     }
 }
@@ -126,10 +126,10 @@ dependencies {
     implementation fg.deobf("software.bernie.geckolib:${geckolib_version}")
 
     //adventure
-    implementation "net.kyori:adventure-api:$adventure_version"
-    implementation "net.kyori:adventure-text-serializer-gson:$adventure_version"
-    implementation "net.kyori:adventure-text-serializer-legacy:$adventure_version"
-    implementation "net.kyori:adventure-text-serializer-plain:$adventure_version"
+    shadow implementation("net.kyori:adventure-api:$adventure_version")
+    shadow implementation("net.kyori:adventure-text-serializer-gson:$adventure_version")
+    shadow implementation("net.kyori:adventure-text-serializer-legacy:$adventure_version")
+    shadow implementation("net.kyori:adventure-text-serializer-plain:$adventure_version")
 
     //Integration mods
     compileOnly fg.deobf("mezz.jei:jei-${jei_mc_version}:${jei_version}:api")
@@ -233,13 +233,15 @@ task createBuildscriptProperties(type: Copy) {
 }
 
 shadowJar {
+    classifier ""
+    configurations = [project.configurations.shadow]
+     
+    //dependencies {
+    //    include(dependency("net.kyori:.*"))
+    //}
+    relocate "net.kyori", "software.bernie.shadowed.net.kyori"
 
-    dependencies {
-        include(dependency('net.kyori:.*'))
-    }
-    relocate 'net.kyori', 'software.bernie.shadowed.net.kyori'
-
-    classifier ''
+    
 }
 
 jar {
