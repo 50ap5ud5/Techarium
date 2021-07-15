@@ -233,6 +233,7 @@ task createBuildscriptProperties(type: Copy) {
 }
 
 shadowJar {
+
     dependencies {
         include(dependency('net.kyori:.*'))
     }
