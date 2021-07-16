@@ -235,15 +235,15 @@ task createBuildscriptProperties(type: Copy) {
 }
 
 shadowJar {
-    classifier ""
+    classifier ''
     configurations = [project.configurations.shadow]
 
     //Disable the use of include dependency due to use of the shadow configuration. Do not uncomment this, this will break shadow jar.
     //dependencies {
-    //    include(dependency("net.kyori:.*"))
+    //    include(dependency('net.kyori:.*'))
     //}
 
-    relocate "net.kyori", "software.bernie.shadowed.net.kyori"
+    relocate 'net.kyori', 'software.bernie.shadowed.net.kyori'
 }
 
 jar {
